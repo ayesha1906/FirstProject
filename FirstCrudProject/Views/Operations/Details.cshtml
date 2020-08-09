@@ -1,0 +1,97 @@
+﻿@model FirstCrudProject.Context.user_reg
+
+@{
+    ViewBag.Title = "Details";
+    //Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            First Name :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.First_Name)
+        </dd>
+        <br />
+        <dt>
+            Middle Name :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Middle_Name)
+        </dd>
+        <br />
+        <dt>
+            Last Name :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Name)
+        </dd>
+        <br />
+        <dt>
+            Age :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+        <br />
+        <dt>
+            Date Of Birth :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoB)
+        </dd>
+        <br />
+        <dt>
+            Address :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <br />
+        <dt>
+            Gender :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <br />
+        <dt>
+            Email Id :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <br />
+        <dt>
+            Profile Image :
+        </dt>
+
+        <dd>
+            @{
+                var base64 = Convert.ToBase64String(Model.ImageBinary);
+                var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+            }
+            <img src="@imgsrc" width="100" height="100" />
+        </dd>
+
+    </dl>
+</div>
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "UserList")
+</div>
+

@@ -1,0 +1,101 @@
+﻿@model List<FirstCrudProject.Context.user_reg>
+
+@{
+    ViewBag.Title = "UserList";
+
+   // Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+@if (TempData["msg"] != null)
+{
+    <p class="alert alert-success" id="msg">@TempData["msg"]</p>
+}
+<br />
+
+<table style="width:100%">
+    <tr>
+        <th> First Name</th>
+        <th> Middle Name</th>
+        <th> Last Name</th>
+        <th> Email</th>
+        <th> Age</th>
+        <th> Birthdate</th>
+        <th> Address</th>
+        <th> Gender</th>
+        <th> Profile Pic</th>
+        <th> Options</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.First_Name</td>
+            <td>@item.Middle_Name</td>
+            <td>@item.Last_Name</td>
+            <td>@item.Email</td>
+            <td>@item.Age</td>
+            <td>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.DoB))</td>
+            <td>@item.Address</td>
+            <td>@item.Gender</td>
+            <td>
+                @{
+                    var base64 = Convert.ToBase64String(item.ImageBinary);
+                    var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                }
+                <img src="@imgsrc" class="user" alt="Not Found" />
+            </td>
+
+            <td>
+                @*<a href="#"><i class="glyphicon glyphicon-pencil"><</i></a>
+                    <a href="#"><i class="glyphicon glyphicon-trash"><</i></a>*@
+                <a href="@Url.Action("Edit",new { item.ID})" class="btn btn-success">Edit</a>
+                <a href="@Url.Action("Delete",new { item.ID})" class="btn btn-danger">Delete</a>
+                <a href="@Url.Action("Details", new {item.ID})" class="btn btn-success">Details</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    <br />
+    @* @Html.ActionLink("Back to DashBoard", "Index", "Dashboard", null)*@
+    <h4><a href="@Url.Action("Index","Dashboard")" style="color: white">Back to dashboard.</a></h4>
+</div>
+
+<style>
+    .user {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    table, th, td {
+        border: 2px solid black;
+        padding: 10px;
+    }
+
+    tr:nth-child(even) {
+        background-color: lightblue;
+    }
+
+    tr:nth-child(odd) {
+        background-color: lightsteelblue;
+    }
+
+
+    th {
+        background-color: black;
+        color: white;
+        text-align: center;
+    }
+
+    tr:hover {
+        background-color: dimgrey;
+    }
+
+    td {
+        color: black;
+    }
+</style>

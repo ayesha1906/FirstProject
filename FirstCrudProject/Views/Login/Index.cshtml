@@ -1,0 +1,112 @@
+﻿@model  FirstCrudProject.Context.user_reg
+@{
+
+    ViewBag.Title = "Login here";
+
+}
+
+<html>
+
+<head>
+    <title> @ViewBag.Title</title>
+    <style>
+        .Box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 400px;
+            height: 400px;
+            box-sizing: border-box;
+            background: rgba(0,0,0,0.7);
+        }
+
+        #i {
+            padding: 75px;
+        }
+
+
+        .Box input[type="email"], input[type="password"] {
+            position: absolute;
+            left: 19%;
+            border: none;
+            width: 250px;
+            height: 30px;
+            outline: none;
+            color: black;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: orange;
+        }
+
+
+        .Box input[type="submit"] {
+            outline: none;
+            border: none;
+            color: #efed40;
+            background: blue;
+        }
+
+
+
+        .l {
+            position: absolute;
+            left: 25%;
+            height: 30px;
+            width: 200px;
+            border-radius: 15px;
+        }
+
+        #box {
+            -moz-box-shadow: rgba(0,0,0,0.5) 30px 30px 30px;
+            -webkit-box-shadow: rgba(0,0,0,0.5) 30px 30px 30px;
+            box-shadow: rgba(0,0,0,0.5) 30px 30px 30px;
+        }
+
+        #vm {
+            color: red;
+            position: absolute;
+            left: 19%;
+            border: none;
+            width: 250px;
+            height: 30px;
+            outline: none;
+            margin-top: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div class="Box" id="box">
+
+        <h2 align="center">Login</h2>
+        <br>
+
+        @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+        {
+
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", type = "email", placeholder = "Enter Email Id" })
+            <div id="vm">   @Html.ValidationMessageFor(model => model.Email)</div>
+
+            <br><br><br>
+
+            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", type = "password", placeholder = "Enter Password" })
+            <div id="vm"> @Html.ValidationMessageFor(model => model.Password) </div>
+            <br><br><br>
+
+            <div id="vm">@ViewBag.LoginErrorMessage</div>
+
+            <input type="submit" name="submit" value="Login" class="l">
+
+            <br /><br />
+
+            <h3 style="color: orange" align=center>OR<br></h3>
+            <h3 align=center><a href="@Url.Action("Register", "Login")" id="i" style="color: aqua">SignUp here</a></h3>
+
+        }
+
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+
+
+    //Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+<h2>Welcome @Session["userName"].ToString()</h2>
+
+@*<h2>Welcome @User.Identity.Name </h2>*@
+
+@if (User.IsInRole("Admin"))
+{
+    <h4><a href="@Url.Action("UserList","Operations")" style="color: white">Click here to view the records .</a></h4>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
